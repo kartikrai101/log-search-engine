@@ -19,7 +19,22 @@ const PopulateModal = ({setPopulate}) => {
     const inputRef = useRef();
 
     async function populateHandler(){
+        const data = inputRef.current.value;
 
+        const jsonData = JSON.parse(data);
+        console.log(jsonData);
+
+        // use the fetch api to make a call to backend server to save this data 
+        const url = "http://localhost:8000/api/insert/new";
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(jsonData)
+        })
+        console.log(response);
     }
 
     return ReactDom.createPortal(

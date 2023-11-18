@@ -4,8 +4,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 const bodyParser = require('body-parser');
 const sequelize = require('./database/connection');
+const cors = require('cors')
 
 app.use(bodyParser.json());
+app.use(cors({
+    origin: '*'
+}))
 
 const insert = require('./routes/insertRoutes');
 
