@@ -6,14 +6,17 @@ const bodyParser = require('body-parser');
 const sequelize = require('./database/connection');
 const cors = require('cors')
 
+
 app.use(bodyParser.json());
 app.use(cors({
     origin: '*'
 }))
 
 const insert = require('./routes/insertRoutes');
+const gets = require('./routes/getRoutes');
 
 app.use('/api/insert', insert);
+app.use('/api/get', gets);
 
 app.listen(8000, () => {
     console.log("Listening to port 8000")

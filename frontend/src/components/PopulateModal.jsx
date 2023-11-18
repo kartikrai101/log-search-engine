@@ -26,15 +26,21 @@ const PopulateModal = ({setPopulate}) => {
 
         // use the fetch api to make a call to backend server to save this data 
         const url = "http://localhost:8000/api/insert/new";
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify(jsonData)
-        })
-        console.log(response);
+        try{
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify(jsonData)
+            })
+            setPopulate(false)
+            return response;
+        }catch(err){
+            console.log("An error occured while connecting to backend!", err)
+            return err;
+        }
     }
 
     return ReactDom.createPortal(
