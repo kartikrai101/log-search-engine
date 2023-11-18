@@ -14,7 +14,7 @@ function App() {
       <Footer setPopulate = {setPopulate} />
       {
         populate ? (
-          <PopulateModal />
+          <PopulateModal setPopulate={setPopulate} />
         ) : null
       }
     </div>
