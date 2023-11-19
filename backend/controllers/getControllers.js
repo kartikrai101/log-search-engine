@@ -14,6 +14,7 @@ exports.getAllDocs = async (req,res) => {
         const body = await client.search({
           index: 'logs_index',
           body: {
+            size: 10000,
             query: {
               match_all: {}, // Match all documents
             },

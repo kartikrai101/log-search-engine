@@ -13,10 +13,12 @@ app.use(cors({
 }))
 
 const insert = require('./routes/insertRoutes');
-const gets = require('./routes/getRoutes');
+const get = require('./routes/getRoutes');
+const search = require('./routes/searchRoutes');
 
 app.use('/api/insert', insert);
-app.use('/api/get', gets);
+app.use('/api/get', get);
+app.use('/api/search', search);
 
 app.listen(8000, () => {
     console.log("Listening to port 8000")

@@ -1,5 +1,6 @@
 import {useState, useEffect, useRef} from 'react';
 import LogComponent from './LogComponent';
+import axios from 'axios';
 
 const optionArray = [
     "Full-Text search", "Level", "Message", "ResourceId", "Timestamp", "TraceId", "SpanId", "Commit", "ParentResourceId"
@@ -25,8 +26,14 @@ const MainContent = () => {
         fetchData(queryString, optionArray[option]);
     }, [queryString]);
 
-    function inputChangeHandler(event){
-        setQueryString(event.target.value);
+    async function inputChangeHandler(event){
+        setQueryString(event.target.value)
+        const filters = option;
+        const url = "http://localhost:8000/api/search/logs_index"
+        const response = await axios.post(url, {queryString, filters});
+        console.log(response.data)
+        setData(response.data)
+        return response;
     }
 
     return (
